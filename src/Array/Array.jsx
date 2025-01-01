@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-
+import "../index.css"
 
 function Array() {
   const [foods, setFoods] = useState(["Apple","Mango","Guava"])
@@ -19,21 +19,32 @@ function Array() {
   const handleRemoveFood = (index) => {
         setFoods(foods.filter((_,i) => i !==index))
   }
+  const reload = () => {
+    window.location.reload();
+  }
   return (
     <>
-      <div >
-        <h2>List of Food</h2>
-          <ul >
-              {foods.map((food,index) => 
-                <li key={index} onClick={() => handleRemoveFood(index)}>
-                    {food}
-                </li>
-              )}
-          </ul>
-          <input type="text" placeholder='Enter food name' id='foodInput' />
-          <button onClick={handleAddFood}>Add Food</button>
-          
-      </div>
+    <div className='container'>
+        <div className='app'>
+            <h2 className='title'>List of Food</h2>
+            <ul >
+                {foods.map((food,index) => 
+                    <li key={index} onClick={() => handleRemoveFood(index)}>
+                        {food}
+                    </li>
+                )}
+            </ul>
+            <input type="text" placeholder='Enter food name' id='foodInput' />
+            <div className='btn'>
+                    <button onClick={handleAddFood}>Add Food</button>
+                    <button onClick={reload}>Reload</button>
+                
+            </div>
+            <div className='message'>
+                <h2>Click List to remove one item</h2>
+            </div>
+        </div>
+    </div>
     </>
   )
 }
